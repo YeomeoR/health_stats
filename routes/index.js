@@ -9,14 +9,20 @@ const insertStatsQuery = 'INSERT INTO stats (weight, chest, waist, alcohol, comm
 router.post('/upload', function(req, res) {
   console.log(req.body);
   // use the database connection to insert into stats
-  connection.query(insertStatsQuery, [req.body.weight, req.body.chest, req.body.waist, req.body.alcohol, req.body.comments], (err, results) => {
+  connection.query(insertStatsQuery, 
+    [
+      req.body.weight, 
+      req.body.chest, 
+      req.body.waist, 
+      req.body.alcohol, 
+      req.body.comments
+    ], (err, results) => {
     if (err) throw err;
-    console.log('Data received from the database!');
     console.log(results);
-    res.redirect('/upload');
   });
 
   res.send('Got it!');
+  connection.end();
 });
 
 /* GET home page. */

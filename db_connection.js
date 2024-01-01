@@ -13,12 +13,6 @@ connection.connect((err) => {
   console.log('Connected to the MySQL database!');
 });
 
-// connection.query('SELECT * FROM users', (err, results) => {
-//   if (err) throw err;
-//   console.log('Data received from the database!');
-//   console.log(results);
-
-// });
 
 
 // connection.end();
