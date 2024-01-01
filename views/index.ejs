@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Rob's Health Stats</title>
+
+  <style>
+    input {
+      width: 25%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border-radius: 12px;
+    }
+  </style>
+</head>
+<body style="display: flex; flex-direction: column; justify-content: center; align-items: center; height: 85vh; background-color: rgb(17 135 237 / 31%);">
+  <div class="titleContainer">
+    <h1>Rob's Health Stats</h1>
+  </div>
+  <div class="formContainer" style="display: flex; justify-content: space-between; height: 80vh;">
+    <form action="./upload" method="post">
+      <label for="weight">Weight (kg):</label><br />
+      <input type="text" id="weight" name="weight"><br />
+      <label for="chest">Chest (inches):</label><br />
+      <input type="text" id="chest" name="chest"><br />
+      <label for="waist">Waist (inches):</label><br />
+      <input type="text" id="waist" name="waist"><br />
+      <label for="alcohol">Alcohol Days (days since last measurement):</label><br />
+      <input type="text" id="alcohol" name="alcohol"><br />
+      <label for="comments">Comments:</label><br />
+      <textarea type="text" id="comments" name="comments" cols="50" rows="30"></textarea>
+      <br /><br />
+      <input type="submit" value="Submit" style="background-color: rgb(143, 237, 171); color: white; font-weight: 600; font-size: 20px; width: 100% !important;">
+    </form>
+  </div>
+    
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+</body>
+</html>
