@@ -30,7 +30,7 @@ router.get('/chart', function(req, res) {
   connection.query('SELECT * FROM stats', (err, results) => {
     if (err) throw err;
     console.log(results);
-    // res.send(results);
+
     const stats = results.map((row) => {
       return {
         date: row.date,
@@ -41,9 +41,29 @@ router.get('/chart', function(req, res) {
       };
     });
 
+    const weightChange = (stats[stats.length - 1].weight - stats[0].weight).toFixed(1);
+
+    let lastChest = null;
+    for (let i = stats.length - 1; i >= 0; i--) {
+      if (stats[i].chest) {
+        lastChest = stats[i].chest;
+        break;
+      }
+    }
+
+    let lastWaist = null;
+    for (let i = stats.length - 1; i >= 0; i--) {
+      if (stats[i].waist) {
+        lastWaist = stats[i].waist;
+        break;
+      }
+    }
+    const chestChange = lastChest - stats[0].chest;
+    const waistChange = lastWaist - stats[0].waist;
+    const alcoholChange = stats[stats.length - 1].alcohol - stats[0].alcohol;
 
 
-    res.render('chart', { title: 'Express', stats: stats});
+    res.render('chart', { title: 'Express', stats: stats, weightChange: weightChange, chestChange: chestChange, waistChange: waistChange, alcoholChange: alcoholChange});
   });
   // connection.end();
 });

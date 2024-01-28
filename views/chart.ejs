@@ -7,6 +7,21 @@
 </head>
 <body>
   <h1>Rob's Health Stats - 2024</h1>
+  <br />
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <h3>Change Since 1st January 2024</h3>
+  </div>
+  <div class="changeDiv" style="display: flex; width: 98vw; justify-content: center; align-items: center; margin-bottom: 10px;;">
+    <p style="background-color: darkgrey; padding: 3px 20px;">Weight: <%= weightChange %>kg</p>
+    <br />
+    <p style="background-color: cadetblue; padding: 3px 20px;">Chest: <%= chestChange %>cm</p>
+    <br />
+    <p style="background-color: coral; padding: 3px 20px;">Waist: <%= waistChange %>cm</p>
+    <br />
+    <p style="background-color: purple; color: white; padding: 3px 20px;">Alcohol Days: <%= alcoholChange %></p>
+    <br />
+  </div>
+
   <div>
     <canvas id="myChart"></canvas>
   </div>
@@ -27,7 +42,7 @@
   acc.push(result.weight || (acc.length > 0 ? acc[acc.length - 1] : 0));
   return acc;
 }, []),
-          borderWidth: 1,
+          borderWidth: 3,
           borderColor: 'darkgrey', // you can change the color of the line
           backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
         },
@@ -37,8 +52,8 @@
   acc.push(result.chest || (acc.length > 0 ? acc[acc.length - 1] : 0));
   return acc;
 }, []), // replace 'anotherMetric' with the actual property name
-          borderWidth: 1,
-          borderColor: 'limegreen', // you can change the color of the line
+          borderWidth: 3,
+          borderColor: 'cadetblue', // you can change the color of the line
           backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
         }, 
         {
@@ -47,7 +62,7 @@
   acc.push(result.waist || (acc.length > 0 ? acc[acc.length - 1] : 0));
   return acc;
 }, []), // replace 'anotherMetric' with the actual property name
-          borderWidth: 1,
+          borderWidth: 3,
           borderColor: 'coral', // you can change the color of the line
           backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
         },
