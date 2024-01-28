@@ -25,6 +25,31 @@ router.post('/upload', function(req, res) {
   connection.end();
 });
 
+router.get('/chart', function(req, res) {
+  // use the database connection to get the stats
+  connection.query('SELECT * FROM stats', (err, results) => {
+    if (err) throw err;
+    console.log(results);
+    // res.send(results);
+    const stats = results.map((row) => {
+      return {
+        date: row.date,
+        weight: row.weight,
+        chest: row.chest,
+        waist: row.waist,
+        alcohol: row.alcohol,
+      };
+    });
+
+
+
+    res.render('chart', { title: 'Express', stats: stats});
+  });
+  // connection.end();
+});
+
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });

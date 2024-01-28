@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RY stats chart</title>
+</head>
+<body>
+  <h1>Rob's Health Stats - 2024</h1>
+  <div>
+    <canvas id="myChart"></canvas>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <script>
+    const ctx = document.getElementById('myChart');
+    const results = JSON.parse('<%- JSON.stringify(stats) %>');
+
+    new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: results.map(result => result.date.split('T')[0].split('-').reverse().join('-')),
+        datasets: [{
+          label: 'Weight',
+          data: results.reduce((acc, result) => {
+  acc.push(result.weight || (acc.length > 0 ? acc[acc.length - 1] : 0));
+  return acc;
+}, []),
+          borderWidth: 1,
+          borderColor: 'darkgrey', // you can change the color of the line
+          backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
+        },
+        {
+          label: 'Chest',
+          data: results.reduce((acc, result) => {
+  acc.push(result.chest || (acc.length > 0 ? acc[acc.length - 1] : 0));
+  return acc;
+}, []), // replace 'anotherMetric' with the actual property name
+          borderWidth: 1,
+          borderColor: 'limegreen', // you can change the color of the line
+          backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
+        }, 
+        {
+          label: 'Waist',
+          data: results.reduce((acc, result) => {
+  acc.push(result.waist || (acc.length > 0 ? acc[acc.length - 1] : 0));
+  return acc;
+}, []), // replace 'anotherMetric' with the actual property name
+          borderWidth: 1,
+          borderColor: 'coral', // you can change the color of the line
+          backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
+        },
+        {
+          type: 'bar',
+          label: 'Alcohol Days',
+          data: results.map(result => result.alcohol), // replace 'anotherMetric' with the actual property name
+          borderWidth: 1,
+          borderColor: 'purple', // you can change the color of the line
+          backgroundColor: 'purple' // make sure the area under the line is not filled
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: false
+          }
+        }
+      }
+    });
+</script>
+</body>
+</html>
