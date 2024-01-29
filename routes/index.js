@@ -22,7 +22,7 @@ router.post('/upload', function(req, res) {
   });
 
   res.send('Got it!');
-  connection.end();
+  // connection.end();
 });
 
 router.get('/chart', function(req, res) {
@@ -46,7 +46,7 @@ router.get('/chart', function(req, res) {
     let lastChest = null;
     for (let i = stats.length - 1; i >= 0; i--) {
       if (stats[i].chest) {
-        lastChest = stats[i].chest;
+        lastChest = stats[i].chest.toFixed(2);
         break;
       }
     }
@@ -54,16 +54,16 @@ router.get('/chart', function(req, res) {
     let lastWaist = null;
     for (let i = stats.length - 1; i >= 0; i--) {
       if (stats[i].waist) {
-        lastWaist = stats[i].waist;
+        lastWaist = stats[i].waist.toFixed(2);
         break;
       }
     }
-    const chestChange = lastChest - stats[0].chest;
-    const waistChange = lastWaist - stats[0].waist;
-    const alcoholChange = stats[stats.length - 1].alcohol - stats[0].alcohol;
+    const chestChange = lastChest - stats[0].chest.toFixed(2);
+    const waistChange = lastWaist - stats[0].waist.toFixed(2);
+    const alcoholChange = stats.reduce((acc, curr) => { return acc + curr.alcohol; }, 0);
 
 
-    res.render('chart', { title: 'Express', stats: stats, weightChange: weightChange, chestChange: chestChange, waistChange: waistChange, alcoholChange: alcoholChange});
+    res.render('chart', { title: 'RY Health Stats', stats: stats, weightChange: weightChange, chestChange: chestChange, waistChange: waistChange, alcoholChange: alcoholChange});
   });
   // connection.end();
 });
@@ -72,7 +72,7 @@ router.get('/chart', function(req, res) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'RY Health Stats' });
 });
 
 module.exports = router;
