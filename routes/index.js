@@ -41,8 +41,15 @@ router.get('/chart', function(req, res) {
       };
     });
 
-    const weightChange = (stats[stats.length - 1].weight - stats[0].weight).toFixed(1);
-
+    
+    let lastWeight = null;
+    for (let i = stats.length - 1; i >= 0; i--) {
+      if (stats[i].weight) {
+        lastWeight = stats[i].weight.toFixed(1);
+        break;
+      }
+    }
+    
     let lastChest = null;
     for (let i = stats.length - 1; i >= 0; i--) {
       if (stats[i].chest) {
@@ -50,7 +57,7 @@ router.get('/chart', function(req, res) {
         break;
       }
     }
-
+    
     let lastWaist = null;
     for (let i = stats.length - 1; i >= 0; i--) {
       if (stats[i].waist) {
@@ -58,6 +65,7 @@ router.get('/chart', function(req, res) {
         break;
       }
     }
+    const weightChange = lastWeight - stats[0].weight.toFixed(1);
     const chestChange = lastChest - stats[0].chest.toFixed(2);
     const waistChange = lastWaist - stats[0].waist.toFixed(2);
     const alcoholChange = stats.reduce((acc, curr) => { return acc + curr.alcohol; }, 0);

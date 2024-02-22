@@ -21,7 +21,7 @@
     </div>
   </div>
 
-  <div>
+  <div id="canvas-container" style="max-height: 586px; display: flex; justify-content: center;">
     <canvas id="myChart" style="background-color: #fafaec;"></canvas>
   </div>
   <br />
@@ -42,9 +42,9 @@
         datasets: [{
           label: 'Weight',
           data: results.reduce((acc, result) => {
-  acc.push(result.weight || (acc.length > 0 ? acc[acc.length - 1] : 0));
-  return acc;
-}, []),
+            acc.push(result.weight || (acc.length > 0 ? acc[acc.length - 1] : 0));
+            return acc;
+          }, []),
           borderWidth: 3,
           borderColor: 'darkgrey', // you can change the color of the line
           backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
@@ -52,9 +52,9 @@
         {
           label: 'Chest',
           data: results.reduce((acc, result) => {
-  acc.push(result.chest || (acc.length > 0 ? acc[acc.length - 1] : 0));
-  return acc;
-}, []), // replace 'anotherMetric' with the actual property name
+            acc.push(result.chest || (acc.length > 0 ? acc[acc.length - 1] : 0));
+            return acc;
+          }, []), // replace 'anotherMetric' with the actual property name
           borderWidth: 3,
           borderColor: 'cadetblue', // you can change the color of the line
           backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
@@ -62,9 +62,9 @@
         {
           label: 'Waist',
           data: results.reduce((acc, result) => {
-  acc.push(result.waist || (acc.length > 0 ? acc[acc.length - 1] : 0));
-  return acc;
-}, []), // replace 'anotherMetric' with the actual property name
+            acc.push(result.waist || (acc.length > 0 ? acc[acc.length - 1] : 0));
+            return acc;
+          }, []), // replace 'anotherMetric' with the actual property name
           borderWidth: 3,
           borderColor: 'coral', // you can change the color of the line
           backgroundColor: 'rgba(0, 0, 0, 0)' // make sure the area under the line is not filled
